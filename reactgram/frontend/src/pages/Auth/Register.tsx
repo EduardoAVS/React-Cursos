@@ -54,8 +54,8 @@ const { loading, error } = auth;
         <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} value={email || ""}/>
         <input type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} value={password || ""}/>
         <input type="password" placeholder="Confirme a senha" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword || ""} />
-        {!loading && <input type="submit" placeholder="Cadastrar" />}
-        {loading && <input type="submit" placeholder="Aguarde..." disabled/>}
+        {!loading && <input type="submit" value="Cadastrar" />}
+        {loading && <input type="submit" value="Aguarde..." disabled/>}
         {typeof error === "string" && <Message msg={error} type="error" />} 
       </form>
       <p>Já tem conta? <Link to="/login" >Clique aqui</Link> </p>

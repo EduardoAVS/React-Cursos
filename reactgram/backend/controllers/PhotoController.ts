@@ -75,7 +75,7 @@ export const deletePhoto = async (req: AuthenticatedRequest, res: Response) => {
 
         await Photo.findByIdAndDelete(photo._id);
 
-        res.status(200).json({ id: photo._id, message: "Foto excluída com sucesso" });
+        res.status(200).json({ _id: photo._id, message: "Foto excluída com sucesso" });
     } catch (error) {
         console.error("Erro ao deletar foto:", error);
         res.status(404).json({ errors: ["Foto não encontrada."] });
@@ -156,6 +156,8 @@ export const updatePhoto = async (req: AuthenticatedRequest, res: Response) => {
         photo.title = title;
     }
 
+    await photo.save();
+
     res.status(200).json({ photo, message: "Foto atualizada com sucesso!" });
     
     return;
@@ -191,7 +193,7 @@ export const likePhoto = async (req: AuthenticatedRequest, res: Response) => {
     // Adiciona o ID do usuário no array de likes
     photo.likes.push(reqUser._id);
 
-    photo.save()
+    await photo.save();
 
     res
     .status(200)
@@ -236,7 +238,7 @@ export const commentPhoto = async (req: AuthenticatedRequest, res: Response) => 
         userId: user._id,
     }
 
-    photo.comments.push(userComment.comment);
+    photo.comments.push(userComment);
 
     await photo.save();
 

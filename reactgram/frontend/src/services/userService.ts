@@ -3,8 +3,7 @@ import { api, requestConfig } from '../utils/config'
 // Get user details
 const profile = async(token: string) => {
     const config = requestConfig("GET", null, token)
-    console.log("🔍 Configuração da requisição:", config);
-
+    
     try{
         const res = await fetch(api + "/users/profile", config)
             .then((res) => res.json())
@@ -17,8 +16,44 @@ const profile = async(token: string) => {
     }
 }
 
+// Update user details
+const updateProfile = async(data: FormData, token: string) => {
+    const config = requestConfig("PUT", data, token, true);
+
+    try {
+        
+        const res = await fetch(api + "/users/", config)
+        .then((res) => res.json())
+        .catch((err) => err);
+        return res;
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+// get user details
+
+const getUserDetails = async (id: string) => {
+    const config = requestConfig("GET")
+
+    try {
+        
+        const res = await fetch(api + "/users/" + id, config)
+        .then((res) => res.json())
+        .catch((err) => err);
+        return res;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const userService = {
     profile,
+    updateProfile,
+    getUserDetails,
 
 }
 

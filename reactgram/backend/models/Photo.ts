@@ -6,7 +6,12 @@ const photoSchema = new Schema({
     image: String,
     title: String,
     likes: Array,
-    comments: Array,
+    comments: [{
+        comment: String,
+        userName: String,
+        userImage: String,
+        userId: Types.ObjectId
+    }],
     userId: {
         type: Types.ObjectId, 
         ref: "User",

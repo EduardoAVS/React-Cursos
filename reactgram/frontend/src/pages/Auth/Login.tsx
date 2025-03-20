@@ -40,8 +40,8 @@ useEffect(() => {
       <form onSubmit={handleSubmit}>
         <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} value={email || ""}/>
         <input type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} value={password || ""}/>
-        {!loading && <input type="submit" placeholder="Cadastrar" />}
-        {loading && <input type="submit" placeholder="Aguarde..." disabled/>}
+        {!loading && <input type="submit" value="Entrar" />}
+        {loading && <input type="submit" value="Aguarde..." disabled/>}
         {typeof error === "string" && <Message msg={error} type="error" />}       
       </form>
       <p>Não tem uma conta? <Link to="/register">Clique Aqui</Link ></p>
